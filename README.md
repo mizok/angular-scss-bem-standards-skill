@@ -90,9 +90,9 @@ angular-scss-bem-standards/
 
 1. **Root Class Matching** — Component root element class matches component name (e.g. `.login`)
 2. **One BEM block per component** — Keeps styles scoped and predictable
-2. **Flat selectors by default** — `block__element--modifier`, not deep nesting
-3. **Design tokens first** — Use `var(--space-*)`, `var(--color-*)`, etc.
-4. **Split when complex** — If you need more than one descendant level, create a child component
+3. **Flat selectors by default** — `block__element--modifier`, not deep nesting
+4. **Design tokens first** — Use `var(--space-*)`, `var(--color-*)`, etc.
+5. **Split when complex** — If you need more than one descendant level, create a child component
 
 ## 📝 Example
 
