@@ -1,8 +1,15 @@
-# SCSS + BEM Review Checklist
+# Angular SCSS + BEM Review Checklist
 
 Use this checklist after creating or refactoring component styles.
 
-## 1) Block Scope
+## 1) Component Structure & Scope
+
+- [ ] **Root Class**: Root element has a class matching component name (e.g. `LoginComponent` -> `.login`).
+- [ ] **Single Root**: Template has one top-level block container.
+- [ ] **Strict Block Inclusion**: Functional blocks (e.g. `.form`) explicitly wrap their children; no orphan elements.
+- [ ] **Shared Block Extraction**: Generic layouts use dedicated blocks (`.auth-layout`), not component-specific namespaces (`.public-shell__...`).
+
+## 2) Block Scope
 
 - [ ] Define exactly one primary block for the component.
 - [ ] Match block intent to component responsibility.
@@ -12,7 +19,7 @@ Fix pattern:
 
 - If two unrelated blocks appear in one component, split into child components.
 
-## 2) Element and Modifier Naming
+## 3) Element and Modifier Naming
 
 - [ ] Use `block__element` for internal parts.
 - [ ] Use `block--modifier` or `block__element--modifier` for variants.
@@ -23,7 +30,7 @@ Fix pattern:
 
 - Rename positional names to semantic names (`left` -> `actions`, `title-row` -> `header`).
 
-## 3) Selector Architecture
+## 4) Selector Architecture
 
 - [ ] Prefer flat selectors first (`.block__item`, `.block__item--state`).
 - [ ] Allow descendant selectors only up to one level (`.block__a .block__b`).
@@ -38,7 +45,7 @@ Fix pattern:
 - Prefer explicit element/modifier classes.
 - If a context rule is truly needed, keep it to one descendant level only.
 
-## 4) Nesting Depth
+## 5) Nesting Depth
 
 - [ ] Do not create `block__element__subelement`.
 - [ ] Keep SCSS nesting shallow and readable.
@@ -48,7 +55,7 @@ Fix pattern:
 
 - Extract reusable section into a child component with its own block.
 
-## 5) Token and Value Discipline
+## 6) Token and Value Discipline
 
 - [ ] Use design tokens for spacing, colors, radius, and typography.
 - [ ] Avoid hard-coded spacing/color values unless explicitly approved.
@@ -58,7 +65,7 @@ Fix pattern:
 
 - Replace literal values with `var(--space-*)`, `var(--color-*)`, `var(--radius-*)`.
 
-## 6) Angular Binding Pattern
+## 7) Angular Binding Pattern
 
 - [ ] Apply modifiers using class bindings where state-driven.
 - [ ] Keep state names consistent between TS signal/computed names and class modifiers.
@@ -68,6 +75,6 @@ Fix pattern:
 
 - Move state-to-class logic into explicit bindings, not selector side effects.
 
-## 7) Completion Gate
+## 8) Completion Gate
 
 Approve only when all checks pass or each failing check has an explicit reason and follow-up action.

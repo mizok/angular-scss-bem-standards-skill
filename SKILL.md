@@ -1,9 +1,9 @@
 ---
-name: scss-bem-standards
+name: angular-scss-bem-standards
 description: Use when writing, reviewing, or refactoring Angular component styles (SCSS/CSS). Triggers on BEM naming issues, deep nesting, non-flat selectors, or hard-coded values instead of design tokens.
 ---
 
-# SCSS BEM Standards
+# Angular SCSS BEM Standards
 
 ## Overview
 
@@ -17,6 +17,19 @@ Prefer component-scoped BEM classes and keep selectors flat by default.
 3. Implement classes in template first, then write SCSS with flat selectors.
 4. Validate against the checklist in `references/review-checklist.md`.
 5. If selector context needs more than one descendant level, split into child components.
+
+## Component Structure & Scope
+
+1. **Root Class Naming**: The root element of the component template MUST have a class that matches the component name (kebab-case).
+   - Example: `LoginComponent` -> `<div class="login ...">`
+   - Rationale: Facilitates debugging, testing, and strict BEM scoping.
+2. **Single Root Element**: Wrap the entire component template in a single root element acting as the Block container.
+3. **Strict Block Inclusion**: Global/Shared blocks (e.g. `.form`) MUST explicitly wrap their elements (e.g. `.form__input`).
+   - Invalid: `<input class="form__input">` (Orphan element)
+   - Valid: `<div class="form"><input class="form__input"></div>`
+4. **No Namespace Pollution**: Do not use a specific component's class to style generic content in another component. Create a dedicated global block instead.
+    - Invalid: `<div class="login public-shell__form-wrapper">` (Login depends on Shell implementation)
+    - Valid: `<div class="login auth-layout">` (Both use a generic `.auth-layout` block)
 
 ## Core Rules
 
