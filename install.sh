@@ -28,11 +28,11 @@ else
   SKILLS_DIR="$HOME/.claude/skills"
 fi
 
-SKILL_NAME="scss-bem-standards"
-REPO_URL="https://github.com/mizok/scss-bem-standards-skill.git"
+SKILL_NAME="angular-scss-bem-standards"
+REPO_URL="https://github.com/mizok/angular-scss-bem-standards-skill.git"
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "  SCSS BEM Standards Skill Installer"
+echo "  Angular SCSS BEM Standards Skill Installer"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 echo "Agent detected: $AGENT_TYPE"
@@ -82,5 +82,5 @@ echo "   • Writing component styles"
 echo "   • Reviewing style code"
 echo "   • Refactoring SCSS/CSS"
 echo ""
-echo "Repository: https://github.com/mizok/scss-bem-standards-skill"
+echo "Repository: https://github.com/mizok/angular-scss-bem-standards-skill"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

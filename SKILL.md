@@ -34,10 +34,14 @@ Prefer component-scoped BEM classes and keep selectors flat by default.
 ## Core Rules
 
 1. Use one BEM block per component and keep the block name stable.
-2. Use only `block`, `block__element`, `block--modifier`, `block__element--modifier`.
-3. Keep nesting depth to two levels in naming; do not create `block__element__sub`.
-4. Keep selectors flat by default; allow at most one descendant level only when it improves readability.
-5. If using a descendant selector, keep both sides in the same block context (for example `.block__a .block__b`).
+2. **Prefer SCSS Nesting with Parent Selector (`&`)**:
+   - Use `&__element` and `&--modifier` to keep the Block name DRY.
+   - Example: `.card { &__title { ... } }` compiles to `.card__title`.
+3. **Compiled CSS must be flat**: The goal is single-class specificity in the output CSS, not necessarily flat SCSS source code.
+4. Keep nesting depth to two levels in naming; do not create `block__element__sub`.
+5. **Contextual Overrides**: Use parent selectors for context-specific overrides within the same block scope.
+   - Valid: `&__header &__logo { ... }` (Target `&__logo` only when inside `&__header`)
+   - This allows styling components based on their placement without deep nesting.
 6. Do not chain descendants beyond one level (for example `.block__a .block__b .block__c` is invalid).
 7. Allow `>`, `+`, `~` when used within the same block context and kept to one level.
 8. Avoid tag-qualified selectors and id selectors for component styling.
@@ -49,41 +53,44 @@ Prefer component-scoped BEM classes and keep selectors flat by default.
 
 1. Bind modifiers with class bindings, for example `[class.card--active]="isActive()"`.
 2. Keep template class names semantic and aligned with BEM map.
-3. Prefer modifier classes first; use one-level descendant selectors only when necessary.
+3. Prefer modifier classes first; use one-level descendant selectors or contextual overrides only when necessary.
 4. Use Angular native control flow (`@if`, `@for`, `@switch`) without changing class semantics.
 
-## One-Level Descendant Pattern
+## Contextual Overrides Pattern
 
-Use this pattern only when a context rule is clearer than adding many one-off modifiers.
+Use this pattern to style an element differently based on its container within the same Block, avoiding new modifier classes for every positional tweak.
 
 Valid:
 
 ```scss
 .card {
-  &__header &__badge {
-    margin-left: var(--space-2);
+  &__header {
+    display: flex;
+    align-items: center;
   }
 
-  &__row > &__cell {
-    padding: var(--space-2);
+  // Contextual Override: Logo inside Header
+  &__header &__logo {
+    margin-right: var(--space-4);
+    height: 32px;
   }
 
-  &__title + &__meta {
-    margin-top: var(--space-1);
-  }
-
-  &__field ~ &__field {
-    margin-top: var(--space-2);
+  // Standard Element
+  &__logo {
+    height: 48px;
   }
 }
 ```
 
-Invalid:
+Invalid (Deep Nesting):
 
 ```scss
 .card {
-  &__header &__meta &__icon {
-    color: var(--color-zinc-500);
+  &__header {
+    // Bad: deeply nested selector
+    .card__logo {
+      ...
+    }
   }
 }
 ```

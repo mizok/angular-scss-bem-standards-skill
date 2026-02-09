@@ -32,18 +32,18 @@ Fix pattern:
 
 ## 4) Selector Architecture
 
-- [ ] Prefer flat selectors first (`.block__item`, `.block__item--state`).
-- [ ] Allow descendant selectors only up to one level (`.block__a .block__b`).
-- [ ] Keep descendant selectors inside the same block context.
+- [ ] **Prefer SCSS Nesting**: Use `&__element` and `&--modifier` to reference the parent block.
+- [ ] **Contextual Overrides**: Use parent selectors (`&__header &__logo`) for context-specific styling instead of deep nesting.
+- [ ] **Compiled Flatness**: Ensure the *compiled* CSS remains flat (single class specificity) for standard elements.
+- [ ] Allow descendant selectors only up to one level (`.block__a .block__b`) or via `&` overrides.
 - [ ] Do not chain descendants beyond one level (`.block__a .block__b .block__c`).
 - [ ] Allow `>`, `+`, `~` only within the same block context and one level.
 - [ ] Avoid tag-qualified selectors (`div.block`) and id selectors for component styling.
-- [ ] Keep selectors class-based.
 
 Fix pattern:
 
-- Prefer explicit element/modifier classes.
-- If a context rule is truly needed, keep it to one descendant level only.
+- Convert flat selectors (`.block__element`) to nested parent selectors (`&__element`).
+- Use `&__context &__target` pattern for positional overrides.
 
 ## 5) Nesting Depth
 
