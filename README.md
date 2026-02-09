@@ -21,20 +21,46 @@ This skill helps AI agents maintain consistent, predictable, and reusable compon
 - Common mistake patterns with fix guidance
 - Angular-specific binding patterns
 
-## 🚀 Quick Start
+## 🚀 Installation
 
-### For Claude Code
+### One-Click Install (Recommended)
 
 ```bash
-# Install to your local skills directory
-cp -r scss-bem-standards ~/.claude/skills/
+curl -fsSL https://raw.githubusercontent.com/mizok/scss-bem-standards-skill/main/install.sh | bash
 ```
 
-### For Codex CLI
+The installer automatically detects your AI agent (Claude Code or Codex CLI) and installs to the correct directory.
+
+### Manual Install
+
+#### For Claude Code
 
 ```bash
-# Install to your local skills directory
-cp -r scss-bem-standards ~/.agents/skills/
+git clone https://github.com/mizok/scss-bem-standards-skill.git ~/.claude/skills/scss-bem-standards
+```
+
+#### For Codex CLI
+
+```bash
+git clone https://github.com/mizok/scss-bem-standards-skill.git ~/.agents/skills/scss-bem-standards
+```
+
+### Verify Installation
+
+Restart your AI agent and the skill should appear in the available skills list. You can verify by looking for `scss-bem-standards` in:
+
+- Claude Code: Check system reminders for available skills
+- Codex CLI: Run `codex skills list`
+
+### Update to Latest Version
+
+```bash
+# Navigate to skill directory
+cd ~/.claude/skills/scss-bem-standards
+# Or for Codex: cd ~/.agents/skills/scss-bem-standards
+
+# Pull latest changes
+git pull
 ```
 
 ## 📖 When to Use
